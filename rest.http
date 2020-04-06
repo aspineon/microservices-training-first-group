@@ -1,0 +1,14 @@
+POST http://localhost:8000/api/v1/payments
+Accept: application/json
+Content-Type: application/json
+
+{
+  "amount": 1000,
+  "creditCard": {
+    "number": "1234567789",
+    "cvv": 645,
+    "expirationDate": "2029-12-10T12:00:00"
+  }
+}
+
+###
