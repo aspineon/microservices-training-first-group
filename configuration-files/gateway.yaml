@@ -3,6 +3,8 @@ spring:
     gateway:
       routes:
         - id: payments
-          uri: lb://PAYMENTS-SERVICE/payments
+          uri: lb://PAYMENTS-SERVICE
           predicates:
-          - Path=/api/payments
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<payments>.*), /$\{payments}
