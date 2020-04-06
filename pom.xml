@@ -15,6 +15,7 @@
         <module>payments</module>
         <module>configuration</module>
         <module>discovery</module>
+        <module>gateway</module>
     </modules>
 
 </project>
