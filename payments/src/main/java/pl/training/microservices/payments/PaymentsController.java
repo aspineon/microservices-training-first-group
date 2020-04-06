@@ -12,7 +12,7 @@ public class PaymentsController {
     private final PaymentsMapper paymentsMapper;
     private final PaymentsService paymentsService;
 
-    @PostMapping("payments")
+    @PostMapping("/payments")
     public ResponseEntity<PaymentTo> addPaymentRequest(PaymentsRequestTo paymentsRequestTo) {
         PaymentsRequest paymentsRequest = paymentsMapper.toPaymentRequest(paymentsRequestTo);
         Payment payment = paymentsService.pay(paymentsRequest);

@@ -5,4 +5,4 @@ spring:
         - id: payments
           uri: lb://PAYMENTS-SERVICE
           predicates:
-          - Path=/payments-service/**
+          - Path=/api/**
