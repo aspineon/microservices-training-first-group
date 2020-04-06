@@ -3,6 +3,6 @@ spring:
     gateway:
       routes:
         - id: payments
-          uri: lb://PAYMENTS-SERVICE
+          uri: lb://PAYMENTS-SERVICE:9000
           predicates:
             - Path=/payments-service/**
