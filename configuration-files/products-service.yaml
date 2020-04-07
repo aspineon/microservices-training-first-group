@@ -1,9 +1,10 @@
 server:
-  port: 9003
+  port: 9001
 spring:
   cloud:
     stream:
       bindings:
-        output:
+        input:
           destination: payments-topic
           content-type: application/json
+          groups: orders
