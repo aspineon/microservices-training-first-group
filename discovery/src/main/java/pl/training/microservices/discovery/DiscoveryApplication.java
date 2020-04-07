@@ -1,4 +1,4 @@
-package pl.training.micrservices.discovery;
+package pl.training.microservices.discovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

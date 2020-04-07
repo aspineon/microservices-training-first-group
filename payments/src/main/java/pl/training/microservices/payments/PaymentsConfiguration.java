@@ -15,7 +15,7 @@ public class PaymentsConfiguration {
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("pl.training.microservices.payments"))
+                .apis(RequestHandlerSelectors.basePackage("pl.training.microservices.payments.api"))
                 .build();
     }
 

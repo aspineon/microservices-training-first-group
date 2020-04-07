@@ -1,4 +1,4 @@
-package pl.training.microservices.orders.payments;
+package pl.training.microservices.payments.api;
 
 import lombok.Data;
 

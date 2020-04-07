@@ -1,4 +1,4 @@
-package pl.training.microservices.payments;
+package pl.training.microservices.payments.api;
 
 public enum PaymentStatusTo {
 

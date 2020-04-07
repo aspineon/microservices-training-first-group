@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>payments-api</module>
         <module>payments</module>
         <module>orders</module>
         <module>configuration</module>

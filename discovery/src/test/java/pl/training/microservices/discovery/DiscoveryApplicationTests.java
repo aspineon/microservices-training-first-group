@@ -1,4 +1,4 @@
-package pl.training.micrservices.discovery;
+package pl.training.microservices.discovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
