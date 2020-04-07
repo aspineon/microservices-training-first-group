@@ -18,7 +18,12 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "products": []
+  "products": [
+    {
+      "id": 1,
+      "name": "Microservices in practice (e-book)"
+    }
+  ]
 }
 
 ###
