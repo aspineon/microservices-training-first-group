@@ -5,6 +5,12 @@ spring:
         - id: payments
           uri: lb://PAYMENTS-SERVICE
           predicates:
-            - Path=/api/**
+            - Path=/api/payments
           filters:
             - RewritePath=/api/(?<payments>.*), /$\{payments}
+        - id: orders
+          uri: lb://ORDERS-SERVICE
+          predicates:
+            - Path=/api/orders
+          filters:
+            - RewritePath=/api/(?<orders>.*), /$\{orders}

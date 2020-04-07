@@ -6,6 +6,6 @@ import lombok.Data;
 public class PaymentsRequest {
 
     private Long amount;
-    private CreditCardTo creditCard;
+    private CreditCard creditCard;
 
 }
