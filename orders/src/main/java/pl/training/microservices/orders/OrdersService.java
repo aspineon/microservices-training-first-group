@@ -19,7 +19,7 @@ public class OrdersService {
     }
 
     private Payment pay() {
-        CreditCard creditCard = new CreditCard("1234567789", "645", LocalDate.parse("2029-12-10T12:00:00"));
+        CreditCard creditCard = new CreditCard("1234567789", "645", LocalDate.now());
         PaymentsRequest paymentsRequest = new PaymentsRequest(1000L, creditCard);
         PaymentsRequestTo paymentsRequestTo = paymentsMapper.toPaymentRequestTo(paymentsRequest);
         PaymentTo paymentTo = paymentsService.addPaymentRequest(paymentsRequestTo).getBody();
