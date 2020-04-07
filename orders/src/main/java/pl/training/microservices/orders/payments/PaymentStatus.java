@@ -2,6 +2,6 @@ package pl.training.microservices.orders.payments;
 
 public enum PaymentStatus {
 
-    STARTED, CONFIRMED, FAILED
+    STARTED, CONFIRMED, FAILED, CANCELED
 
 }
