@@ -3,11 +3,11 @@ spring:
     gateway:
       routes:
         - id: orders
-            uri: lb://PRODUCTS-SERVICE
-            predicates:
-              - Path=/api/products
-            filters:
-              - RewritePath=/api/(?<products>.*), /$\{products}
+          uri: lb://PRODUCTS-SERVICE
+          predicates:
+            - Path=/api/products
+          filters:
+            - RewritePath=/api/(?<products>.*), /$\{products}
         - id: payments
           uri: lb://PAYMENTS-SERVICE
           predicates:
