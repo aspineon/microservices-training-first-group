@@ -96,6 +96,30 @@ spec:
         claimName: products-volume-claim
 ---
 apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configuration-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app-name: configuration-app
+  template:
+      metadata:
+        labels:
+          app-name: configuration-app
+      spec:
+        containers:
+          - name: configuration
+            image: landrzejewski/training-configuration
+            envFrom:
+              - configMapRef:
+                  name: global-config-map
+            ports:
+              - name: http
+                containerPort: 8888
+---
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: orders-replica-set
@@ -199,6 +223,17 @@ spec:
   ports:
     - port: 5432
       targetPort: service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: configuration-service
+spec:
+  selector:
+    app-name: configuration-app
+  ports:
+    - port: 8888
+      targetPort: http
 ---
 apiVersion: v1
 kind: Service
