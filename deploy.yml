@@ -1,0 +1,136 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: global-config-map
+data:
+  ACTIVE_PROFILE: production
+  CONFIGURATION_SERVER_URI: configuration-service
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: zookeeper-pod
+spec:
+  containers:
+    - name: zookeeper
+      image: wurstmeister/zookeeper
+      ports:
+        - name: service
+          containerPort: 2181
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kafka-pod
+spec:
+  containers:
+    - name: kafka
+      image: wurstmeister/kafka
+      ports:
+        - name: service
+          containerPort: 9092
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: orders-replica-set
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app-name: orders-app
+  template:
+    metadata:
+      labels:
+        app-name: orders-app
+    spec:
+      containers:
+        - name: orders
+          image: landrzejewski/training-orders
+          envFrom:
+            - configMapRef:
+                name: global-config-map
+          ports:
+            - name: http
+              containerPort: 9002
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: payments-replica-set
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app-name: payments-app
+  template:
+    metadata:
+      labels:
+        app-name: payments-app
+    spec:
+      containers:
+        - name: payments
+          image: landrzejewski/training-payments
+          envFrom:
+            - configMapRef:
+                name: global-config-map
+          ports:
+            - name: http
+              containerPort: 9003
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: products-replica-set
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app-name: products-app
+  template:
+    metadata:
+      labels:
+        app-name: products-app
+    spec:
+      containers:
+        - name: products
+          image: landrzejewski/training-products
+          envFrom:
+            - configMapRef:
+                name: global-config-map
+          ports:
+            - name: http
+              containerPort: 9001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-service
+spec:
+  selector:
+    app-name: orders-app
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments-service
+spec:
+  selector:
+    app-name: payments-app
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-service
+spec:
+  selector:
+    app-name: products-app
+  ports:
+    - port: 80
+      targetPort: http
