@@ -5,11 +5,47 @@ metadata:
 data:
   ACTIVE_PROFILE: production
   CONFIGURATION_SERVER_URI: configuration-service
+  KAFKA_ADVERTISED_HOST_NAME: kafka-service
+  KAFKA_ZOOKEEPER_CONNECT: zookeeper-service
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config-map
+data:
+  POSTGRES_DB: products
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: products-volume
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /tmp/products
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: products-volume-claim
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+    - ReadWriteMany
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: zookeeper-pod
+  labels:
+    app-name: zookeeper-app
 spec:
   containers:
     - name: zookeeper
@@ -22,13 +58,42 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: kafka-pod
+  labels:
+    app-name: kafka-app
 spec:
   containers:
     - name: kafka
       image: wurstmeister/kafka
+      envFrom:
+        - configMapRef:
+            name: global-config-map
       ports:
         - name: service
           containerPort: 9092
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres-pod
+  labels:
+    app-name: postgres-app
+spec:
+  containers:
+    - name: postgres
+      image: postgres:11.1
+      envFrom:
+        - configMapRef:
+            name: postgres-config-map
+      volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: storage
+      ports:
+        - name: service
+          containerPort: 5432
+  volumes:
+    - name: storage
+      persistentVolumeClaim:
+        claimName: products-volume-claim
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -105,6 +170,39 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: zookeeper-service
+spec:
+  selector:
+    app-name: zookeeper-app
+  ports:
+    - port: 2181
+      targetPort: service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-service
+spec:
+  selector:
+    app-name: kafka-app
+  ports:
+    - port: 9092
+      targetPort: service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-database-service
+spec:
+  selector:
+    app-name: postgres-app
+  ports:
+    - port: 5432
+      targetPort: service
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: orders-service
 spec:
   selector:
@@ -134,3 +232,16 @@ spec:
   ports:
     - port: 80
       targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-external-service
+spec:
+  type: LoadBalancer
+  selector:
+    app-name: orders-app
+  ports:
+    - port: 80
+      targetPort: http
+      nodePort: 30000
