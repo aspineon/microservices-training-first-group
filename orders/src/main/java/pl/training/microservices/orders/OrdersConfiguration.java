@@ -1,5 +1,6 @@
 package pl.training.microservices.orders;
 
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -14,6 +15,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableCircuitBreaker
 @EnableBinding(Sink.class)
 @EnableFeignClients(basePackages = "pl.training.microservices.payments.api")
 @EnableSwagger2
