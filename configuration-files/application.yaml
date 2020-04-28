@@ -3,5 +3,6 @@ spring:
     default-property-inclusion: non_null
 management:
   endpoints:
-    exposure:
-      include: '*' # only for training
+    web:
+      exposure:
+        include:  '*' # only for training
