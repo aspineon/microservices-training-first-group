@@ -12,9 +12,12 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>products-api</module>
+        <module>products</module>
+        <module>orders-api</module>
+        <module>orders</module>
         <module>payments-api</module>
         <module>payments</module>
-        <module>orders</module>
         <module>configuration</module>
         <module>discovery</module>
         <module>gateway</module>

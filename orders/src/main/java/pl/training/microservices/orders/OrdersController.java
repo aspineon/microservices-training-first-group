@@ -3,23 +3,23 @@ package pl.training.microservices.orders;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.training.microservices.orders.api.OrderTo;
+import pl.training.microservices.orders.api.Orders;
 
 import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-public class OrdersController {
+public class OrdersController implements Orders {
 
     private final OrdersMapper ordersMapper;
     private final OrdersService ordersService;
     private final UriBuilder uriBuilder = new UriBuilder();
 
-    @PostMapping("orders")
-    public ResponseEntity<Void> placeOrder(@RequestBody @Valid OrderTo orderTo, BindingResult bindingResult) {
+    public ResponseEntity<Void> placeOrder(OrderTo orderTo, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }

@@ -36,7 +36,7 @@ public class OrdersConfiguration {
 
     @StreamListener(Sink.INPUT)
     public void onPaymentStatusChange(PaymentTo paymentTo) {
-        System.out.println("Payment status update: "  + paymentTo);
+        System.out.println("Payment status update: " + paymentTo);
     }
 
 }
