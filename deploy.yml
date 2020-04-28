@@ -4,7 +4,7 @@ metadata:
   name: global-config-map
 data:
   ACTIVE_PROFILE: production
-  CONFIGURATION_SERVER_URI: http://configuration-service
+  CONFIGURATION_SERVER_URI: http://configuration-service:8888
   KAFKA_ADVERTISED_HOST_NAME: kafka-service
   KAFKA_ZOOKEEPER_CONNECT: zookeeper-service
 ---
