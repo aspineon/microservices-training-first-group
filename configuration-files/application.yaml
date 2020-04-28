@@ -1,6 +1,10 @@
 spring:
   jackson:
     default-property-inclusion: non_null
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
 management:
   endpoints:
     web:
