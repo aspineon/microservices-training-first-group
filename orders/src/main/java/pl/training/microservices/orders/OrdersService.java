@@ -24,6 +24,7 @@ public class OrdersService {
 
     private final PaymentsMapper paymentsMapper;
     private final Payments payments;
+    private final OrdersFeeConfig feeConfig;
     //private final RestTemplate restTemplate;
 
     @HystrixCommand(fallbackMethod = "placeOrderFallback", ignoreExceptions = RuntimeException.class)
@@ -39,7 +40,7 @@ public class OrdersService {
 
     private PaymentsRequestTo createPaymentRequest() {
         CreditCard creditCard = new CreditCard("1234567789", "645", LocalDate.now());
-        PaymentsRequest paymentsRequest = new PaymentsRequest(1000L, creditCard);
+        PaymentsRequest paymentsRequest = new PaymentsRequest(1000L + feeConfig.getFee(), creditCard);
         return paymentsMapper.toPaymentRequestTo(paymentsRequest);
     }
 
