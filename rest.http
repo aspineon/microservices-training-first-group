@@ -62,3 +62,7 @@ spring
 POST http://localhost:8888/decrypt
 
 aae507a85c0fd094eff81e5a996a3733e80b8ffabddf2428e63692deb0ab65c8
+
+###
+
+POST http://localhost:8080/api/identity
