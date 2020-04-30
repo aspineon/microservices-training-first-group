@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Data
 public class User implements UserDetails {
 
+    @GeneratedValue
     @Id
     private Long id;
     private String firstName;
