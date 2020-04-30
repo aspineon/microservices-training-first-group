@@ -10,7 +10,7 @@ public class PaymentsService {
     @NotifyPaymentStatusChange
     public Payment pay(PaymentsRequest paymentsRequest) {
         log.info(paymentsRequest.toString());
-        fakeDelay();
+        //fakeDelay();
         return new Payment(1L, PaymentStatus.STARTED);
     }
 
