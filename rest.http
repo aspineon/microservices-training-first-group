@@ -16,6 +16,7 @@ Content-Type: application/json
 POST http://localhost:8080/api/orders
 Accept: application/json
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODgyOTE1MDUsInVzZXJfbmFtZSI6ImphbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiI3ZDllYjI5OS01ODQ4LTRlYTAtOTFiMi0xNWM3OTg4OTJiOWUiLCJjbGllbnRfaWQiOiJ0cmFpbmluZyIsInNjb3BlIjpbImFwaSJdfQ.ENozEwBBPnArOHT6DAAbr7Sl1KA_2laU7jWgGFJjSjA
 
 {
   "products": [
