@@ -7,3 +7,5 @@ spring:
       #label: master
   main:
     web-application-type: none
+encrypt:
+  key: SYMMETRICKEY
