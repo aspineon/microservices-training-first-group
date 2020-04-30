@@ -15,3 +15,4 @@ management:
     web:
       exposure:
         include:  '*' # only for training
+jwtSigningKey: "${cipher}da018ec409b1102b6efe01f6bf72cb5fd63dd97f19e8e03c1c208835f68b611a"
