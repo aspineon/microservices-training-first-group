@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>identity</module>
         <module>products-api</module>
         <module>products</module>
         <module>orders-api</module>
