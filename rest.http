@@ -72,5 +72,19 @@ Content-Type: application/json
   "firstName": "Jan",
   "lastName": "Kowalski",
   "username": "jan",
-  "password:": "123"
+  "password": "123"
 }
+
+###
+
+POST http://localhost:9004/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+username=jan&password=123&client_id=training&grant_type=password
+
+###
+
+GET http://localhost:9004/users/active
+Content-Type: application/json
+Accept: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODgyODczNTUsInVzZXJfbmFtZSI6ImphbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiI2N2YzYmQ4OC02MjcwLTRlNjYtOTczOS1lZDZjODgzYjFiOWUiLCJjbGllbnRfaWQiOiJ0cmFpbmluZyIsInNjb3BlIjpbImFwaSJdfQ.H4OJ4ILeBcrp7MCcv97RWtGZsf_5f2X0BuVe12ZRxBI
