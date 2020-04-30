@@ -55,10 +55,10 @@ path=orders-service
 
 POST http://localhost:8888/encrypt
 
-SYMMETRICKEY
+200
 
 ###
 
 POST http://localhost:8888/decrypt
 
-429e207dff27445529699776fea6a88bff0910d779ccfdc29b85966c2d885151
+aae507a85c0fd094eff81e5a996a3733e80b8ffabddf2428e63692deb0ab65c8
