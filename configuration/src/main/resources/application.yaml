@@ -5,5 +5,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/landrzejewski/microservices-training
+          uri: https://github.com/landrzejewski/microservices-training-first-group
           search-paths: configuration-files
